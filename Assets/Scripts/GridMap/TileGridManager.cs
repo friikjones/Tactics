@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileGridInstantiate : MonoBehaviour
+public class TileGridManager : MonoBehaviour
 {
     public List<GameObject> tileResources;
     public GameObject tileContainer;
@@ -13,9 +13,10 @@ public class TileGridInstantiate : MonoBehaviour
     public GameObject[,] gridTiles;
 
 
-    void Start()
+    void Awake()
     {
-
+        InstantiateTiles();
+        // PrintGrids();
     }
 
     // Update is called once per frame
@@ -100,7 +101,8 @@ public class TileGridInstantiate : MonoBehaviour
                 GameObject temp = Instantiate(tileResources.Find((x) => x.name == "TileDefault"));
                 temp.transform.parent = gridTiles[i, j].transform.parent;
                 //Position on Grid
-                temp.transform.position = new Vector3(offsetX + i, gridHeights[i, j], offsetY + j);
+                temp.transform.localPosition = new Vector3(offsetX + i, gridHeights[i, j], offsetY + j);
+                temp.transform.localRotation = Quaternion.Euler(-90, 0, 0);
                 //Set name
                 string name = i + "," + j + "-" + "TileDefault";
                 temp.name = name;
@@ -141,6 +143,12 @@ public class TileGridInstantiate : MonoBehaviour
             }
             Debug.Log(j + ": " + output);
         }
+    }
+
+    public void HighlightPossibleMoves(Vector2Int actorPos, int range)
+    {
+        Debug.Log("Highlighting on " + actorPos.x + "," + actorPos.y + " - Range: " + range);
+
     }
 
 }
