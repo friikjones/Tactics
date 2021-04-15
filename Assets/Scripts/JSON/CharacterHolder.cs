@@ -1,10 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.IO;
 using System;
 
 [Serializable]
 public class CharacterHolder
 {
     public int ID;
-    public string name;
+    public string char_name;
     public CharClass type;
     public CharElement element;
     public float stat_HP;
@@ -23,7 +27,7 @@ public class CharacterHolder
     public void Clone(CharacterHolder target)
     {
         ID = target.ID;
-        name = target.name;
+        char_name = target.char_name;
         type = target.type;
         element = target.element;
         stat_HP = target.stat_HP;

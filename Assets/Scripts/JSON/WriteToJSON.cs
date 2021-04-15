@@ -53,4 +53,16 @@ public class WriteToJSON : MonoBehaviour
             AddtoList(temp_char);
         }
     }
+
+    [ContextMenu("Instantiate Characters")]
+    void InstantiateCharacters()
+    {
+        foreach (CharacterHolder character in characterList)
+        {
+            GameObject temp = Instantiate(gameObject, Vector3.zero, Quaternion.identity);
+            // var temp_script = temp.AddComponent<CharacterHolder>();
+            // temp_script.Clone(character);
+            // temp.name = temp_script.char_name;
+        }
+    }
 }
